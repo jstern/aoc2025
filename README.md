@@ -1,4 +1,4 @@
-# aoc2023
+# aoc2025
 
 Solutions to advent of code 2025. Bootstrapped from [my 2023 repo](https://github.com/jstern/aoc2023).
 

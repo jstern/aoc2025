@@ -1,0 +1,21 @@
+package aoc
+
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
+
+var y{{ .Year }}d{{ .Day }}Input = `xxx
+	yyy`
+
+func Test_{{ .Year }}_Day_{{ .Day }}_Part_1_Example(t *testing.T) {
+	result := {{ .FuncName }}1(y{{ .Year }}d{{ .Day }}Input)
+	assert.Equal(t, "right", result)
+}
+
+func Test_{{ .Year }}_Day_{{ .Day }}_Part_2_Example(t *testing.T) {
+	//result := {{ .FuncName }}2(y{{ .Year }}d{{ .Day }}Input)
+	//assert.Equal(t, "still right!", result)
+	t.Skip()
+}

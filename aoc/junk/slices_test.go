@@ -23,12 +23,7 @@ func TestIntSlices_Atoi(t *testing.T) {
 func TestIntSlices_Custom(t *testing.T) {
 	in := `a1 b2 c3`
 
-	parse := func(s string) (int, error) {
-		i, err := strconv.ParseInt(s, 16, 64)
-		return int(i), err
-	}
-
-	actual := junk.IntSlices(in, parse)
+	actual := junk.IntSlices(in, junk.Hex)
 	expected := [][]int{
 		{161, 178, 195},
 	}

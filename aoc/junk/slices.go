@@ -9,7 +9,7 @@ import (
 
 // IntSlices carves up an input into a slice of slices of ints,
 // assuming values on each line are separated by sep.
-func IntSlices(input string, conv func(string) (int, error)) [][]int {
+func IntSlices(input string, conv StringToInt) [][]int {
 	res := make([][]int, 0)
 
 	if conv == nil {

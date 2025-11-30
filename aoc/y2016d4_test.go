@@ -17,7 +17,7 @@ func Test_2016_Day_4_Part_1_Example(t *testing.T) {
 	assert.Equal(t, "1514", result)
 }
 
-func Test_decodeName(t *testing.T) {
+func Test_2016_Day_4_Part_2_decodeName(t *testing.T) {
 	desc := "qzmt-zixmtkozy-ivhz-343"
 	res := decodeName(desc, 343)
 	assert.Contains(t, res, "very encrypted name")

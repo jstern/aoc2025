@@ -55,9 +55,13 @@ func main() {
 			run(k)
 		}
 	case "stubs":
-		stubs(args[1])
+		key := args[1]
+		stubs(key)
+
+		year, day := parseKey(key)
+		fetchInput(year, day)
 	default:
-		panic("first arg must be 'run' or 'start'")
+		panic("unknown subcommand")
 	}
 }
 
@@ -71,7 +75,7 @@ type result struct {
 func run(key string) *result {
 	attempt := aoc.SolutionFor(key)
 	if attempt == nil {
-		fmt.Println("no solution available for key")
+		color.Red("no solution registered for key %s\n", key)
 		os.Exit(1)
 	}
 
@@ -99,7 +103,7 @@ func run(key string) *result {
 		fmt.Printf("\nAnswer in %v\n---\n%s\n", res.duration, res.answer)
 		return &res
 	case <-time.After(time.Duration(wait) * time.Second):
-		fmt.Println("Too slow!")
+		color.Red("Too slow!\n")
 		return nil
 	}
 }
@@ -115,14 +119,14 @@ func parseKey(key string) (string, string) {
 func fetchInput(year, day string) string {
 	cached := cachedInput(year, day)
 	if cached != "" {
-		fmt.Println("\nUsing cached input")
+		color.Cyan("\nUsing cached input")
 		return cached
 	}
 	token := strings.TrimSpace(os.Getenv("AOC_SESSION"))
 
 	url := fmt.Sprintf("https://adventofcode.com/%s/day/%s/input", year, day)
 
-	fmt.Printf("\nFetching input from %s\n", url)
+	color.Yellow("\nFetching input from %s\n", url)
 
 	var client http.Client
 	req, err := http.NewRequest(http.MethodGet, url, nil)
@@ -130,6 +134,7 @@ func fetchInput(year, day string) string {
 		panic(err)
 	}
 
+	req.Header.Set("User-Agent", "https://github.com/jstern/aoc2025")
 	req.Header.Set("Cookie", "session="+token)
 
 	resp, err := client.Do(req)
@@ -198,6 +203,7 @@ func submit(key string, result result) string {
 
 	req.Header.Set("Cookie", "session="+token)
 	req.Header.Add("Content-Type", "application/x-www-form-urlencoded")
+	req.Header.Set("User-Agent", "https://github.com/jstern/aoc2025")
 
 	resp, err := client.Do(req)
 	if err != nil {

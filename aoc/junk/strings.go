@@ -10,3 +10,16 @@ func ReverseString(s string) string {
 	}
 	return string(reversed)
 }
+
+// RuneFreqs counts occurrences of runes. Pass in a map to build on previous results.
+func RuneFreqs(s string, fs map[rune]int) map[rune]int {
+	if fs == nil {
+		fs = make(map[rune]int)
+	}
+	for _, r := range s {
+		f := fs[r]
+		fs[r] = f + 1
+	}
+
+	return fs
+}

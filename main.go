@@ -43,7 +43,7 @@ func main() {
 			submitRes := submit(key, *res)
 
 			print := color.New(color.FgGreen).PrintlnFunc()
-			if strings.HasPrefix(submitRes, "That's not the right answer.") {
+			if strings.HasPrefix(submitRes, "That's not the right answer") {
 				print = color.New(color.FgRed).PrintlnFunc()
 			}
 			print(submitRes)

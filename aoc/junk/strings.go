@@ -23,3 +23,18 @@ func RuneFreqs(s string, fs map[rune]int) map[rune]int {
 
 	return fs
 }
+
+// Chunks returns s cut into chunks of size n
+func Chunks(s string, n int) []string {
+	res := make([]string, 0)
+	start := 0
+	end := n
+	max := len(s) + 1
+	for end < max {
+		res = append(res, s[start:end])
+		start += n
+		end += n
+	}
+
+	return res
+}

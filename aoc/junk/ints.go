@@ -34,3 +34,17 @@ func Max(a, b int) int {
 	}
 	return b
 }
+
+// Factors returns a list of numbers that perfectly divide n (excluding 1 and n)
+func Factors(n int) []int {
+	if n == 0 {
+		return []int{}
+	}
+	res := make([]int, 0)
+	for i := 2; i < n; i++ {
+		if n%i == 0 {
+			res = append(res, i)
+		}
+	}
+	return res
+}

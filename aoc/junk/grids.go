@@ -29,3 +29,12 @@ func AdjacentCells[T any](grid [][]T, row, col int) []Cell2D {
 	}
 	return res
 }
+
+// RuneGrid converts a slice of strings into a slice of rune slices.
+func RuneGrid(rows []string) [][]rune {
+	res := make([][]rune, len(rows))
+	for r, row := range rows {
+		res[r] = []rune(row)
+	}
+	return res
+}

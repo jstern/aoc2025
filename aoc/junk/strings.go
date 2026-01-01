@@ -1,5 +1,7 @@
 package junk
 
+import "strings"
+
 // ReverseString reverses a string.
 func ReverseString(s string) string {
 	runes := []rune(s)
@@ -37,4 +39,11 @@ func Chunks(s string, n int) []string {
 	}
 
 	return res
+}
+
+// TrimInput does common cleanup on downloaded or test input.
+func TrimInput(input string) string {
+	input = strings.TrimPrefix(input, "\n")
+	input = strings.TrimSuffix(input, "\n")
+	return input
 }
